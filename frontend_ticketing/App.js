@@ -1,6 +1,6 @@
 // src/App.js
 import React from 'react';
-import NFTTicketingApp from './pages/NFTTicketingApp';
+import NFTTicketingApp from './src/pages/NFTTicketingApp';
 
 function App() {
   return <NFTTicketingApp />;
