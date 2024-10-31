@@ -27,4 +27,22 @@ class NFTTicket {
       basePrice
     };
     this.eventOrganizer = organizer;
-  }}
+  }
+  
+  @call({})
+  mint_ticket(params) {
+    const { tokenId } = params;
+    const caller = near.signerAccountId();
+    assert(
+      this.eventDetails.ticketsSold < this.eventDetails.totalTickets,
+      'All tickets have been sold'
+    );
+    
+    assert(!this.ticketOwners.get(tokenId), 'Token ID already exists');
+    
+    const deposit = near.attachedDeposit();
+    assert(
+      deposit >= BigInt(this.eventDetails.basePrice),
+      'Attached deposit must be greater than or equal to ticket price'
+    );
+}}
